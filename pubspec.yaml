@@ -1,0 +1,86 @@
+name: postalhub_tracker
+description: "Postalhub Tracker"
+
+publish_to: 'none' 
+
+version: 25.1.153+6
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  firebase_core: ^2.32.0
+  dynamic_color: ^1.5.4
+  animations: ^2.0.8
+  cloud_firestore: ^4.14.0
+  path: ^1.9.0
+  firebase_database: ^10.5.5
+  flutter_markdown: ^0.7.1
+  google_generative_ai: ^0.4.1
+  loading_animation_widget: ^1.2.1
+  intl: ^0.17.0
+  another_stepper: ^1.2.2
+  shimmer: ^3.0.0
+  flutter_custom_tabs: ^2.1.0
+  url_launcher: ^6.3.0
+  image_network: ^2.5.6
+  cached_network_image: ^3.4.1
+  simple_animations: ^5.1.0
+  particles_flutter: ^1.0.1
+  lucide_icons: ^0.257.0
+  syncfusion_flutter_barcodes: ^28.2.4
+  firebase_app_check: ^0.2.2
+  carousel_slider: ^5.0.0
+  google_fonts: ^6.2.1
+  #firebase_vertexai: ^0.1.0
+  #firebase_auth: ^4.16.0
+
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+  - assets/images/postalhub_logo.jpg
+  - assets/images/dev_pic1.png
+  - assets/images/dev_pic.png
+  - assets/images/How_to_use_1.png
+  - assets/images/How_to_use_2.png
+  - assets/images/favicon.png
+  - assets/images/carousel/1.png
+  - assets/images/carousel/2.png
+  - assets/images/carousel/3.png
+  - assets/images/carousel/4.png
+  - assets/images/carousel/5.png
+  - assets/images/carousel/6.png
+  - assets/images/profile_image_icon.jpg
+  - assets/images/login/login.png
+  - assets/images/login/register.png
+  - assets/images/login/vector-3.png
+  - assets/images/profile_card.jpg
+  - assets/images/components/not_available.png
+  - assets/images/components/parcel_mate.png
+  - assets/images/components/parcel_not_found.png
+  - assets/images/components/search_parcel.png
+  - assets/images/components/smart_locker_comingsoon.png
+  - assets/images/components/smart_locker_comingsoon1.png
+  - assets/gif/not_found.gif
+  - assets/gif/search.gif
+
+  fonts:
+      - family: GoogleSans
+        fonts:
+          - asset: assets/fonts/google_sans_regular.ttf
+          - asset: assets/fonts/google_sans_italic.ttf
+            style: italic
+      - family: Kaleko
+        fonts:
+          - asset: assets/fonts/kaleko_regular.ttf
