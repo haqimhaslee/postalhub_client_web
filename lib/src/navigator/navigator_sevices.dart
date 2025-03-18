@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 import 'dart:math';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:postalhub_tracker/pages/ai_assistant/ai_assistant.dart';
 import 'package:postalhub_tracker/pages/home/home.dart';
 import 'package:postalhub_tracker/pages/more/more_page.dart';
 import 'package:postalhub_tracker/pages/parcel_library/parcel_library.dart';
@@ -75,10 +74,24 @@ class _NavigatorServicesState extends State<NavigatorServices>
                 //shape: const CircleBorder(),
                 elevation: 0,
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AskOurAi()));
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Opps'),
+                        content: const Text(
+                            'This feature only available on mobile devices'),
+                        actions: <Widget>[
+                          TextButton(
+                            child: const Text('OK'),
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Close the dialog
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
                 tooltip: 'ParcelMate',
                 backgroundColor:
