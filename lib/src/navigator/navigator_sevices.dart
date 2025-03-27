@@ -80,7 +80,7 @@ class _NavigatorServicesState extends State<NavigatorServices>
                       return AlertDialog(
                         title: const Text('Opps'),
                         content: const Text(
-                            'This feature only available on mobile devices'),
+                            'This feature only available on mobile devices\n\n*Account registration may be required'),
                         actions: <Widget>[
                           TextButton(
                             child: const Text('OK'),

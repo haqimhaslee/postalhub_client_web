@@ -25,8 +25,8 @@ class _AskOurAiState extends State<AskOurAi> {
   void initState() {
     super.initState();
     _model = GenerativeModel(
-      model: 'gemini-1.5-flash-8b',
-      apiKey: 'AIzaSyCcUGyhB6jq9jGI9n0hHtUuBfjBeu7e5_U',
+      model: 'null',
+      apiKey: 'null',
     );
   }
 
