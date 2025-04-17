@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:postalhub_tracker/main.dart';
+// adjust this path
 
 class AppearanceMain extends StatefulWidget {
   const AppearanceMain({super.key});
@@ -7,12 +9,32 @@ class AppearanceMain extends StatefulWidget {
 }
 
 class _AppearanceMainState extends State<AppearanceMain> {
-  String selectedOption = 'Auto'; // Default selection
+  String selectedOption = 'Auto';
+
+  @override
+  void initState() {
+    super.initState();
+    final mode = themeManager.value;
+    selectedOption = switch (mode) {
+      ThemeMode.light => 'Light',
+      ThemeMode.dark => 'Dark',
+      _ => 'Auto',
+    };
+  }
+
+  void _onThemeChanged(String? value) {
+    if (value == null) return;
+    setState(() => selectedOption = value);
+    final mode = switch (value) {
+      'Light' => ThemeMode.light,
+      'Dark' => ThemeMode.dark,
+      _ => ThemeMode.system,
+    };
+    themeManager.setTheme(mode);
+  }
 
   @override
   Widget build(BuildContext context) {
-    // ... other widget code
-
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -23,48 +45,36 @@ class _AppearanceMainState extends State<AppearanceMain> {
             child: Align(
               alignment: Alignment.topCenter,
               child: ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxWidth: 750,
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 15, bottom: 0, top: 20),
-                        child: Text(
-                          "Theme",
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                        ),
+                constraints: const BoxConstraints(maxWidth: 750),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(left: 15, bottom: 0, top: 20),
+                      child: Text("Theme", style: TextStyle(fontSize: 15)),
+                    ),
+                    RadioListTile<String>(
+                      title: const Text('Light'),
+                      value: 'Light',
+                      groupValue: selectedOption,
+                      onChanged: _onThemeChanged,
+                    ),
+                    RadioListTile<String>(
+                      title: const Text('Dark'),
+                      value: 'Dark',
+                      groupValue: selectedOption,
+                      onChanged: _onThemeChanged,
+                    ),
+                    RadioListTile<String>(
+                      title: const Text('Use device settings'),
+                      subtitle: const Text(
+                        'Apply the same theme set on your device to the app.',
                       ),
-                      RadioListTile<String>(
-                          title: const Text('Light'),
-                          value: 'Light',
-                          groupValue: selectedOption,
-                          onChanged: null),
-                      RadioListTile<String>(
-                          title: const Text('Dark'),
-                          value: 'Dark',
-                          groupValue: selectedOption,
-                          onChanged: null),
-                      RadioListTile<String>(
-                        title: const Text('Use device settings'),
-                        subtitle: const Text(
-                            'Apply the same theme set on your device to the app.'),
-                        value: 'Auto',
-                        groupValue: selectedOption,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedOption = value!;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
+                      value: 'Auto',
+                      groupValue: selectedOption,
+                      onChanged: _onThemeChanged,
+                    ),
+                  ],
                 ),
               ),
             ),
