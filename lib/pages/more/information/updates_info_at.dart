@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:markdown_widget/markdown_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
 class UpdatesInfoAt extends StatefulWidget {
@@ -109,20 +108,12 @@ class _UpdatesInfoAtState extends State<UpdatesInfoAt> {
                   child: Column(
                     children: [
                       ListTile(
-                        onTap: () {},
                         title: Text(
                           formattedDate,
                         ),
-                        subtitle: MarkdownBody(
-                          onTapLink: (text, href, title) {
-                            if (href != null) {
-                              launchUrl(Uri.parse(href));
-                            }
-                          },
+                        subtitle: MarkdownBlock(
                           data: data['ver_info']?.replaceAll(r'\n', '\n') ??
                               'No Content',
-                          styleSheet:
-                              MarkdownStyleSheet.fromTheme(Theme.of(context)),
                         ),
                       ),
                       const Padding(

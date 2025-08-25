@@ -1,10 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class AskOurAi extends StatefulWidget {
   const AskOurAi({super.key});
@@ -198,13 +196,6 @@ class MessageWidget extends StatelessWidget {
                   ? Theme.of(context).colorScheme.primaryContainer
                   : null,
               borderRadius: BorderRadius.circular(13),
-            ),
-            child: MarkdownBody(
-              selectable: true,
-              data: text,
-              onTapLink: (text, href, title) {
-                if (href != null) launchUrl(Uri.parse(href));
-              },
             ),
           ),
         ),

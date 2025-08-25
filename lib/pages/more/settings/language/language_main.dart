@@ -7,79 +7,155 @@ class LanguageMain extends StatefulWidget {
 }
 
 class _LanguageMainState extends State<LanguageMain> {
-  String selectedOption = 'English'; // Default selection
+  String selectedOption = 'English';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          const SliverAppBar.large(
-            title: Text('Languages'),
+      appBar: AppBar(
+        title: const Text("Language"),
+      ),
+      body: Align(
+        alignment: Alignment.topCenter,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: 750,
           ),
-          SliverToBoxAdapter(
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxWidth: 750,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
                 ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 15, bottom: 0, top: 20),
-                        child: Text(
-                          "Languages",
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Theme.of(context).colorScheme.primary,
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25),
+                      topRight: Radius.circular(25),
+                    ),
+                    child: Material(
+                        color: Theme.of(context).colorScheme.surfaceVariant,
+                        child: Padding(
+                          padding: const EdgeInsets.all(0),
+                          child: RadioListTile<String>(
+                            title: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                              child: const Text('English'),
+                            ),
+                            value: 'English',
+                            groupValue: selectedOption,
+                            onChanged: (value) {
+                              setState(() {
+                                selectedOption = value!;
+                              });
+                            },
                           ),
-                        ),
-                      ),
-                      RadioListTile<String>(
-                        title: const Text('English'),
-                        value: 'English',
-                        groupValue: selectedOption,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedOption = value!;
-                          });
-                        },
-                      ),
-                      RadioListTile<String>(
-                        title: const Text('Bahasa Melayu'),
-                        value: 'Bahasa Melayu',
-                        groupValue: selectedOption,
-                        onChanged: null,
-                      ),
-                      RadioListTile<String>(
-                        title: const Text('中文 (简体)'),
-                        value: '中文(简体)',
-                        groupValue: selectedOption,
-                        onChanged: null,
-                      ),
-                      RadioListTile<String>(
-                        title: const Text('中文 (繁體)'),
-                        value: '中文(繁體)',
-                        groupValue: selectedOption,
-                        onChanged: null,
-                      ),
-                      RadioListTile<String>(
-                        title: const Text('தமிழ்'),
-                        value: 'தமிழ்',
-                        groupValue: selectedOption,
-                        onChanged: null,
-                      ),
-                    ],
+                        )),
                   ),
                 ),
-              ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(0),
+                      topRight: Radius.circular(0),
+                    ),
+                    child: Material(
+                        color: Theme.of(context).colorScheme.surfaceVariant,
+                        child: Padding(
+                          padding: const EdgeInsets.all(0),
+                          child: RadioListTile<String>(
+                              title: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                child: const Text('Bahasa Melayu'),
+                              ),
+                              value: 'Bahasa Melayu',
+                              groupValue: selectedOption,
+                              onChanged: null),
+                        )),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(0),
+                      topRight: Radius.circular(0),
+                    ),
+                    child: Material(
+                        color: Theme.of(context).colorScheme.surfaceVariant,
+                        child: Padding(
+                          padding: const EdgeInsets.all(0),
+                          child: RadioListTile<String>(
+                              title: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                child: const Text('中文 (简体)'),
+                              ),
+                              value: '中文(简体)',
+                              groupValue: selectedOption,
+                              onChanged: null),
+                        )),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(0),
+                      topRight: Radius.circular(0),
+                    ),
+                    child: Material(
+                        color: Theme.of(context).colorScheme.surfaceVariant,
+                        child: Padding(
+                          padding: const EdgeInsets.all(0),
+                          child: RadioListTile<String>(
+                              title: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                child: const Text('中文 (繁體)'),
+                              ),
+                              value: '中文(繁體)',
+                              groupValue: selectedOption,
+                              onChanged: null),
+                        )),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(25),
+                      bottomRight: Radius.circular(25),
+                    ),
+                    child: Material(
+                        color: Theme.of(context).colorScheme.surfaceVariant,
+                        child: Padding(
+                          padding: const EdgeInsets.all(0),
+                          child: RadioListTile<String>(
+                              title: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                child: const Text('தமிழ்'),
+                              ),
+                              value: 'தமிழ்',
+                              groupValue: selectedOption,
+                              onChanged: null),
+                        )),
+                  ),
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

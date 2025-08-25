@@ -30,7 +30,7 @@ class _SmartLockerMainState extends State<SmartLockerMain> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        '\nComing soon',
+                        '\nComing soon [Planned]',
                         style: TextStyle(
                             fontSize: 16,
                             color: Theme.of(context).colorScheme.onSurface,
@@ -38,7 +38,7 @@ class _SmartLockerMainState extends State<SmartLockerMain> {
                         textAlign: TextAlign.center,
                       ),
                       Text(
-                        'Intelligent Smart Locker\n',
+                        'Smart Locker\n',
                         style: TextStyle(
                             fontSize: 20,
                             color: Theme.of(context).colorScheme.onSurface,

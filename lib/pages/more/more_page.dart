@@ -2,15 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:postalhub_tracker/pages/more/about/about_main.dart';
-import 'package:postalhub_tracker/pages/more/payments/payment_history/payment_history_main.dart';
-import 'package:postalhub_tracker/pages/more/payments/payment_methods/payment_methods_main.dart';
 import 'package:postalhub_tracker/pages/more/settings/appearance/appearance_main.dart';
 import 'package:postalhub_tracker/pages/more/settings/language/language_main.dart';
-import 'package:postalhub_tracker/pages/more/settings/notification/notification_settings.dart';
-import 'package:postalhub_tracker/pages/more/settings/security/security_main.dart';
-import 'package:postalhub_tracker/pages/profile/points_history.dart';
-import 'package:postalhub_tracker/pages/profile/profile_main.dart';
-import 'package:postalhub_tracker/pages/profile/profile_widget.dart';
+import 'package:postalhub_tracker/pages/services/customer_services/customer_services.dart';
 
 class MorePage extends StatefulWidget {
   const MorePage({super.key});
@@ -23,12 +17,10 @@ bool switchValue = false;
 class _MorePageState extends State<MorePage> {
   @override
   Widget build(BuildContext context) {
-    // ... other widget code
-
     return Scaffold(
-        //appBar: AppBar(
-        //  title: const Text('More'),
-        //),
+        appBar: AppBar(
+          title: Text("Profile & more"),
+        ),
         body: Align(
             alignment: Alignment.topCenter,
             child: ConstrainedBox(
@@ -37,199 +29,256 @@ class _MorePageState extends State<MorePage> {
               ),
               child: ListView(
                 children: [
-                  const Column(
-                    children: [
-                      Padding(
-                          padding: EdgeInsets.fromLTRB(15, 18, 15, 10),
-                          child: ClipRRect(
-                            child: SizedBox(
-                              width: 600,
-                              child: ProfileOverviewWidget(),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                        ),
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15, bottom: 2, right: 15),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(25),
+                                  topRight: Radius.circular(25),
+                                ),
+                                child: Material(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .surfaceVariant,
+                                  child: InkWell(
+                                    onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text('Opps! Not available'),
+                                            content: Text(
+                                                'This feature only available in mobile version (Account registration required).'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () =>
+                                                    Navigator.of(context).pop(),
+                                                child: Text('OK'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(6),
+                                      child: ListTile(
+                                        title:
+                                            const Text('Personal Information'),
+                                        subtitle: const Text(
+                                            'Manage your personal information'),
+                                        leading: const Icon(
+                                          Icons.person_rounded,
+                                          size: 30,
+                                        ),
+                                        trailing: const Icon(
+                                          Icons.chevron_right_rounded,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )))
+                      ]),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15, bottom: 2, right: 15),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(25),
+                                bottomRight: Radius.circular(25),
+                              ),
+                              child: Material(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .surfaceVariant,
+                                child: InkWell(
+                                    onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text('Opps! Not available'),
+                                            content: Text(
+                                                'This feature only available in mobile version (Account registration required).'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () =>
+                                                    Navigator.of(context).pop(),
+                                                child: Text('OK'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(6),
+                                      child: ListTile(
+                                        title: const Text('Points history'),
+                                        subtitle:
+                                            const Text('Show points history'),
+                                        leading: const Icon(
+                                          Icons.history_rounded,
+                                          size: 25,
+                                        ),
+                                        trailing: const Icon(
+                                            Icons.chevron_right_rounded),
+                                      ),
+                                    )),
+                              ),
+                            )),
+                      ]),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                  ),
+                  Padding(
+                      padding:
+                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(25),
+                          topRight: Radius.circular(25),
+                        ),
+                        child: Material(
+                          color: Theme.of(context).colorScheme.surfaceVariant,
+                          child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const AppearanceMain()));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(6),
+                                child: ListTile(
+                                  title: const Text('Appearance'),
+                                  subtitle: const Text(
+                                      'Customize the app appearance'),
+                                  leading: const Icon(
+                                    Icons.palette_rounded,
+                                    size: 25,
+                                  ),
+                                  trailing:
+                                      const Icon(Icons.chevron_right_rounded),
+                                ),
+                              )),
+                        ),
+                      )),
+                  Padding(
+                      padding:
+                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(25),
+                          bottomRight: Radius.circular(25),
+                        ),
+                        child: Material(
+                          color: Theme.of(context).colorScheme.surfaceVariant,
+                          child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const LanguageMain()));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(6),
+                                child: ListTile(
+                                  title: const Text('Languages'),
+                                  subtitle: const Text(
+                                      'Customize the app appearance'),
+                                  leading: const Icon(
+                                    Icons.translate_rounded,
+                                    size: 25,
+                                  ),
+                                  trailing:
+                                      const Icon(Icons.chevron_right_rounded),
+                                ),
+                              )),
+                        ),
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                  ),
+                  Padding(
+                      padding:
+                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25),
+                          ),
+                          child: Material(
+                            color: Theme.of(context).colorScheme.surfaceVariant,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const CustomerServices()));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(6),
+                                child: ListTile(
+                                  title: const Text('Help & Support Center'),
+                                  subtitle: const Text('Get help and support'),
+                                  leading: const Icon(
+                                    Icons.help_rounded,
+                                    size: 25,
+                                  ),
+                                  trailing:
+                                      const Icon(Icons.chevron_right_rounded),
+                                ),
+                              ),
                             ),
-                          ))
-                    ],
-                  ),
+                          ))),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, bottom: 0, top: 15),
-                    child: Text(
-                      "Account",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: const Text('Personal Information'),
-                    leading: const Icon(Icons.person_outline_rounded),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ProfileMain()));
-                    },
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, bottom: 0, top: 20),
-                    child: Text(
-                      "Payments",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: const Text('Payment methods'),
-                    leading: const Icon(Icons.credit_card_outlined),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const PaymentMethodsMain()));
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('Payment history'),
-                    leading: const Icon(Icons.history_outlined),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const PaymentHistoryMain()));
-                    },
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, bottom: 0, top: 20),
-                    child: Text(
-                      "Postal Hub",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: const Text('Postal point'),
-                    leading: const Icon(Icons.local_activity_outlined),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    title: const Text('Points history'),
-                    leading: const Icon(Icons.history_outlined),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const PointsHistory()));
-                    },
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, bottom: 0, top: 20),
-                    child: Text(
-                      "Settings",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: const Text('Security'),
-                    leading: const Icon(Icons.lock_outline_rounded),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SecurityMain()));
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('Appearance'),
-                    leading: const Icon(Icons.palette_outlined),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AppearanceMain()));
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('Languages'),
-                    leading: const Icon(Icons.translate_rounded),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LanguageMain()));
-                    },
-                  ),
-                  ListTile(
-                    title: const Text('Notifications'),
-                    leading: const Icon(Icons.notifications_outlined),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const NotificationMain()));
-                    },
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, bottom: 0, top: 20),
-                    child: Text(
-                      "Support",
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    title: const Text('Get help'),
-                    leading: const Icon(Icons.help_outline_rounded),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    title: const Text('Send feedback'),
-                    leading: const Icon(Icons.feedback_outlined),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    title: const Text('About'),
-                    leading: const Icon(Icons.info_outline_rounded),
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AboutMain()));
-                    },
-                  ),
-                  ListTile(
-                    title: const Center(
-                      child:
-                          Text('Log Out', style: TextStyle(color: Colors.red)),
-                    ),
-                    onTap: () {},
-                  ),
+                      padding:
+                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(25),
+                            bottomRight: Radius.circular(25),
+                          ),
+                          child: Material(
+                            color: Theme.of(context).colorScheme.surfaceVariant,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const AboutMain()));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(6),
+                                child: ListTile(
+                                  title: const Text('About'),
+                                  subtitle:
+                                      const Text('Learn more about Postal Hub'),
+                                  leading: const Icon(
+                                    Icons.info_rounded,
+                                    size: 25,
+                                  ),
+                                  trailing:
+                                      const Icon(Icons.chevron_right_rounded),
+                                ),
+                              ),
+                            ),
+                          ))),
                   const SizedBox(
                     height: 35,
                   ),

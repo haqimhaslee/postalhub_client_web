@@ -36,51 +36,115 @@ class _AppearanceMainState extends State<AppearanceMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          const SliverAppBar.large(
-            title: Text('Appearance'),
-          ),
-          SliverToBoxAdapter(
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: ConstrainedBox(
+        appBar: AppBar(
+          title: Text("Appearance"),
+        ),
+        body: Align(
+            alignment: Alignment.topCenter,
+            child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 750),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 15, bottom: 0, top: 20),
-                      child: Text("Theme", style: TextStyle(fontSize: 15)),
-                    ),
-                    RadioListTile<String>(
-                      title: const Text('Light'),
-                      value: 'Light',
-                      groupValue: selectedOption,
-                      onChanged: _onThemeChanged,
-                    ),
-                    RadioListTile<String>(
-                      title: const Text('Dark'),
-                      value: 'Dark',
-                      groupValue: selectedOption,
-                      onChanged: _onThemeChanged,
-                    ),
-                    RadioListTile<String>(
-                      title: const Text('Use device settings'),
-                      subtitle: const Text(
-                        'Apply the same theme set on your device to the app.',
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15),
                       ),
-                      value: 'Auto',
-                      groupValue: selectedOption,
-                      onChanged: _onThemeChanged,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 15, bottom: 2, right: 15),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25),
+                          ),
+                          child: Material(
+                              color:
+                                  Theme.of(context).colorScheme.surfaceVariant,
+                              child: Padding(
+                                padding: const EdgeInsets.all(0),
+                                child: RadioListTile<String>(
+                                  title: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                    child: const Text('Light'),
+                                  ),
+                                  subtitle: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 0, 0, 8),
+                                    child: const Text(
+                                      'Use light mode',
+                                    ),
+                                  ),
+                                  value: 'Light',
+                                  groupValue: selectedOption,
+                                  onChanged: _onThemeChanged,
+                                ),
+                              )),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 15, bottom: 2, right: 15),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(0),
+                            topRight: Radius.circular(0),
+                          ),
+                          child: Material(
+                              color:
+                                  Theme.of(context).colorScheme.surfaceVariant,
+                              child: Padding(
+                                padding: const EdgeInsets.all(0),
+                                child: RadioListTile<String>(
+                                  title: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                    child: const Text('Dark'),
+                                  ),
+                                  subtitle: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 0, 0, 8),
+                                    child: const Text(
+                                      'Use dark mode.',
+                                    ),
+                                  ),
+                                  value: 'Dark',
+                                  groupValue: selectedOption,
+                                  onChanged: _onThemeChanged,
+                                ),
+                              )),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 15, bottom: 2, right: 15),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(25),
+                              bottomRight: Radius.circular(25),
+                            ),
+                            child: Material(
+                              color:
+                                  Theme.of(context).colorScheme.surfaceVariant,
+                              child: RadioListTile<String>(
+                                title: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                                  child: const Text('Use device settings'),
+                                ),
+                                subtitle: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 0, 0, 8),
+                                  child: const Text(
+                                    'Apply the same theme set on your device to the app.',
+                                  ),
+                                ),
+                                value: 'Auto',
+                                groupValue: selectedOption,
+                                onChanged: _onThemeChanged,
+                              ),
+                            )),
+                      ),
+                    ]))));
   }
 }

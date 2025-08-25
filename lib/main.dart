@@ -1,29 +1,41 @@
+//INTERNAL PACKAGE
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
+
+//import 'package:postalhub_tracker/src/auth_services/auth_snapshot.dart';
+import 'package:postalhub_tracker/src/components/theme_manager.dart';
 import 'package:postalhub_tracker/src/navigator/navigator_sevices.dart';
+import 'package:flutter/foundation.dart';
 import 'firebase_options.dart';
 import 'package:postalhub_tracker/src/postalhub_ui.dart';
-//import 'package:dynamic_color/dynamic_color.dart';
-import 'package:flutter/services.dart';
+
+//EXTERNAL PACKAGE
 import 'package:google_fonts/google_fonts.dart';
-import 'package:postalhub_tracker/src/components/theme_manager.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 
 final themeManager = ThemeManager();
-Future<void> main() async {
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseAppCheck.instance.activate(
+    webProvider: ReCaptchaV3Provider('key'),
+    androidProvider: AndroidProvider.playIntegrity,
+    appleProvider: AppleProvider.deviceCheck,
+  );
 
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    systemNavigationBarColor:
-        Colors.transparent, // transparent on Android, translucent on iOS
-    systemNavigationBarDividerColor: Colors.transparent,
-    systemNavigationBarIconBrightness: Brightness.dark, // Or Brightness.light
-  ));
-
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
 
   runApp(MyApp(themeManager));
 }
@@ -34,37 +46,36 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<ThemeMode>(
-        valueListenable: themeManager,
-        builder: (context, themeMode, _) {
-          return MaterialApp(
+    return DynamicColorBuilder(
+      builder: (ColorScheme? dynamicLight, ColorScheme? dynamicDark) {
+        final ColorScheme lightScheme = dynamicLight ?? lightColorScheme;
+        final ColorScheme darkScheme = dynamicDark ?? darkColorScheme;
+
+        return ValueListenableBuilder<ThemeMode>(
+          valueListenable: themeManager,
+          builder: (context, themeMode, _) {
+            return MaterialApp(
               title: "Postal Hub",
               theme: ThemeData(
-                colorScheme: lightColorScheme,
+                colorScheme: lightScheme,
+                useMaterial3: true,
                 textTheme: GoogleFonts.nunitoTextTheme(),
-                pageTransitionsTheme: const PageTransitionsTheme(
-                  builders: {
-                    TargetPlatform.android:
-                        PredictiveBackPageTransitionsBuilder(),
-                  },
-                ),
               ),
               darkTheme: ThemeData(
-                colorScheme: darkColorScheme,
+                colorScheme: darkScheme,
+                useMaterial3: true,
                 textTheme: GoogleFonts.nunitoTextTheme().apply(
-                  bodyColor: darkColorScheme.onSurface,
-                  displayColor: darkColorScheme.onSurface,
-                ),
-                pageTransitionsTheme: const PageTransitionsTheme(
-                  builders: {
-                    TargetPlatform.android:
-                        PredictiveBackPageTransitionsBuilder(),
-                  },
+                  bodyColor: darkScheme.onSurface,
+                  displayColor: darkScheme.onSurface,
                 ),
               ),
               themeMode: themeMode,
               debugShowCheckedModeBanner: false,
-              home: const NavigatorServices());
-        });
+              home: NavigatorServices(),
+            );
+          },
+        );
+      },
+    );
   }
 }

@@ -1,8 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:postalhub_tracker/pages/home/home_widgets/newsletter/main_newsletter.dart';
 import 'dart:math';
-import 'package:postalhub_tracker/pages/home/home_widgets/announcement_news_page.dart';
+
 import 'package:postalhub_tracker/pages/services/locations/locations_main.dart';
 import 'package:postalhub_tracker/pages/parcel_library/parcel_library.dart';
 import 'package:postalhub_tracker/pages/search_inventory/search_inventory.dart';

@@ -14,8 +14,7 @@ Future<void> _privacypolicy(BuildContext context) async {
   final theme = Theme.of(context);
   try {
     await launchUrl(
-      Uri.parse(
-          'https://www.termsfeed.com/live/9187d68f-f1e8-4d89-921f-f8432437ba97'),
+      Uri.parse('https://policies.postalhub.my'),
       customTabsOptions: CustomTabsOptions(
         colorSchemes: CustomTabsColorSchemes.defaults(
           toolbarColor: theme.colorScheme.surface,
@@ -41,65 +40,135 @@ class _AboutMainState extends State<AboutMain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          const SliverAppBar.large(
-            title: Text('About'),
+      appBar: AppBar(
+        title: const Text('About'),
+      ),
+      body: Align(
+        alignment: Alignment.topCenter,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: 750,
           ),
-          SliverToBoxAdapter(
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxWidth: 750,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
                 ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: const Text('About'),
-                        trailing: const Icon(Icons.chevron_right_rounded),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const About(),
-                            ),
-                          );
-                        },
+                Padding(
+                    padding:
+                        const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(25),
+                        topRight: Radius.circular(25),
                       ),
-                      ListTile(
-                        title: const Text('Terms and Privacy Policy'),
-                        trailing: const Icon(Icons.chevron_right_rounded),
-                        onTap: () => _privacypolicy(context),
+                      child: Material(
+                        color: Theme.of(context).colorScheme.surfaceVariant,
+                        child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const About()));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(6),
+                              child: ListTile(
+                                title: const Text('About'),
+                                subtitle:
+                                    const Text('Learn more about Postal Hub'),
+                                trailing:
+                                    const Icon(Icons.chevron_right_rounded),
+                              ),
+                            )),
                       ),
-                      ListTile(
-                        trailing: const Icon(Icons.chevron_right_rounded),
-                        title: const Text('Licences'),
-                        onTap: () => showLicensePage(
-                          context: context,
-                        ),
+                    )),
+                Padding(
+                    padding:
+                        const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(0),
+                        topRight: Radius.circular(0),
                       ),
-                      ListTile(
-                        title: const Text('Version'),
-                        trailing: const Text('25.4.1875-web'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const UpdatesInfoAt(),
-                            ),
-                          );
-                        },
+                      child: Material(
+                        color: Theme.of(context).colorScheme.surfaceVariant,
+                        child: InkWell(
+                            onTap: () => _privacypolicy(context),
+                            child: Padding(
+                              padding: const EdgeInsets.all(6),
+                              child: ListTile(
+                                title: const Text('Policies'),
+                                subtitle: const Text(
+                                    'Learn more about our terms and privacy policy'),
+                                trailing:
+                                    const Icon(Icons.chevron_right_rounded),
+                              ),
+                            )),
                       ),
-                      const SizedBox(height: 70),
-                    ],
-                  ),
-                ),
-              ),
+                    )),
+                Padding(
+                    padding:
+                        const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(0),
+                        topRight: Radius.circular(0),
+                      ),
+                      child: Material(
+                        color: Theme.of(context).colorScheme.surfaceVariant,
+                        child: InkWell(
+                            onTap: () => showLicensePage(
+                                  context: context,
+                                ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(6),
+                              child: ListTile(
+                                title: const Text('Licences'),
+                                subtitle:
+                                    const Text('Licenses used in Postal Hub'),
+                                trailing:
+                                    const Icon(Icons.chevron_right_rounded),
+                              ),
+                            )),
+                      ),
+                    )),
+                Padding(
+                    padding:
+                        const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(25),
+                        bottomRight: Radius.circular(25),
+                      ),
+                      child: Material(
+                        color: Theme.of(context).colorScheme.surfaceVariant,
+                        child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const UpdatesInfoAt(),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(6),
+                              child: ListTile(
+                                title: const Text('Version'),
+                                subtitle: const Text('Version of Postal Hub'),
+                                trailing:
+                                    const Icon(Icons.chevron_right_rounded),
+                              ),
+                            )),
+                      ),
+                    )),
+                const SizedBox(height: 70),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
