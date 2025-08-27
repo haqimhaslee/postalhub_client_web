@@ -40,7 +40,6 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: EdgeInsets.fromLTRB(0, 13, 0, 0),
               child: SizedBox(
-                width: 600,
                 child: AllDealRewards(),
               ),
             ),

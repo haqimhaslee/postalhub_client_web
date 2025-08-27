@@ -62,9 +62,6 @@ class _AnnouncementNewsPageState extends State<AnnouncementNewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("News & Announcements"),
-      ),
       body: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 550),
@@ -97,54 +94,99 @@ class _AnnouncementNewsPageState extends State<AnnouncementNewsPage> {
 
               return Column(
                 children: [
-                  ListTile(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AnnouncementDetailPage(
-                            title: doc['title'],
-                            description: doc['description'],
-                            imageUrl: doc['img_url'],
-                            date: formattedDate,
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(25)),
+                      child: Material(
+                        color: Theme.of(context).colorScheme.surfaceVariant,
+                        child: InkWell(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(25),
+                                    topRight: Radius.circular(25)),
+                                child: SizedBox(
+                                  width: 600,
+                                  height: 200,
+                                  child: Image.network(doc['img_url'],
+                                      fit: BoxFit.fitWidth),
+                                ),
+                              ),
+                              const Padding(
+                                  padding: EdgeInsets.fromLTRB(15, 13, 0, 6),
+                                  child: Row(
+                                    children: [
+                                      CircleAvatar(
+                                        backgroundImage: AssetImage(
+                                            'assets/images/postalhub_logo.jpg'),
+                                        radius: 8,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                        child: Text(
+                                          'Postal Hub',
+                                          textAlign: TextAlign.start,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w100,
+                                            fontSize: 12,
+                                          ),
+                                          softWrap: true,
+                                          //overflow: TextOverflow.ellipsis,
+                                          //maxLines: 1,
+                                        ),
+                                      )
+                                    ],
+                                  )),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(15, 0, 0, 10),
+                                child: Text(
+                                  doc['title'],
+                                  textAlign: TextAlign.start,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                  softWrap: true,
+                                  //overflow: TextOverflow.ellipsis,
+                                  //maxLines: 1,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(15, 0, 0, 15),
+                                child: Text(
+                                  formattedDate,
+                                  style: const TextStyle(
+                                    fontSize: 11,
+                                    //fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AnnouncementDetailPage(
+                                  title: doc['title'],
+                                  description: doc['description'],
+                                  imageUrl: doc['img_url'],
+                                  date: formattedDate,
+                                ),
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
-                          child: SizedBox(
-                            width: 500,
-                            height: 200,
-                            child: Image.network(doc['img_url'],
-                                fit: BoxFit.cover),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Text(
-                            doc['title'],
-                            style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                          child: Text(
-                            formattedDate,
-                            style: const TextStyle(
-                              fontSize: 11,
-                              //fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                        )
-                      ],
+                      ),
                     ),
-                  ),
+                  )
                 ],
               );
             },

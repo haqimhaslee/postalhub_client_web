@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:postalhub_tracker/pages/reward_system/deal/deal_page/all_deal_page.dart';
-import 'package:postalhub_tracker/pages/reward_system/deal/deal_widgets/no_reward_handler.dart';
+import 'package:postalhub_tracker/pages/reward_system/deal/deal_widgets/components/no_reward_handler.dart';
 import 'package:postalhub_tracker/pages/reward_system/deal/viewer.dart';
 import 'package:postalhub_tracker/src/ui_components/shimmer_loading_animation.dart';
 
@@ -32,7 +32,7 @@ class _AllDealRewardsState extends State<AllDealRewards> {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('rewardLibrary')
-          .limit(5)
+          .limit(8)
           .get();
 
       if (mounted) {
@@ -118,7 +118,7 @@ class _AllDealRewardsState extends State<AllDealRewards> {
           ConstrainedBox(
             constraints: const BoxConstraints(maxHeight: 260),
             child: CarouselView(
-              itemSnapping: true,
+              itemSnapping: false,
               itemExtent: 200,
               onTap: (index) {
                 final doc = documents[index];

@@ -113,41 +113,79 @@ class _MainFaqsPageState extends State<MainFaqsPage> {
                 (doc['faqDatePublished'] as Timestamp).toDate();
             final String formattedDate = DateFormat('d/M/yyyy').format(date);
 
+            // Decide corner radius based on position
+            BorderRadius borderRadius;
+            if (index == 0) {
+              // Top item
+              borderRadius = const BorderRadius.only(
+                topLeft: Radius.circular(25),
+                topRight: Radius.circular(25),
+                bottomLeft: Radius.circular(3),
+                bottomRight: Radius.circular(3),
+              );
+            } else if (index == documents.length - 1) {
+              // Bottom item
+              borderRadius = const BorderRadius.only(
+                topLeft: Radius.circular(3),
+                topRight: Radius.circular(3),
+                bottomLeft: Radius.circular(25),
+                bottomRight: Radius.circular(25),
+              );
+            } else {
+              // Middle items
+              borderRadius = const BorderRadius.all(Radius.circular(3));
+            }
+
             return Column(
               children: [
-                ListTile(
-                  onTap: () {
-                    if (isLargeScreen) {
-                      setState(() => selectedDocument = doc);
-                    } else {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FaqDetailPage(
-                            title: doc['faqTitle'],
-                            description: doc['faqContent'],
-                            date: formattedDate,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 3),
+                  child: ClipRRect(
+                    borderRadius: borderRadius,
+                    child: Material(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .surfaceVariant
+                          .withOpacity(0.7),
+                      child: InkWell(
+                        onTap: () {
+                          if (isLargeScreen) {
+                            setState(() => selectedDocument = doc);
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => FaqDetailPage(
+                                  title: doc['faqTitle'],
+                                  description: doc['faqContent'],
+                                  date: formattedDate,
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                        child: ListTile(
+                          trailing: const Icon(Icons.chevron_right_rounded),
+                          title: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Text(
+                                  doc['faqTitle'],
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      );
-                    }
-                  },
-                  trailing: Icon(Icons.chevron_right_rounded),
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Text(
-                          doc['faqTitle'],
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
-                Divider()
+                )
               ],
             );
           },
@@ -191,36 +229,84 @@ class FaqDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(title)),
         body: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 550),
-            child: ListView(
-              padding: const EdgeInsets.all(16.0),
-              children: [
-                const SizedBox(height: 10.0),
-                Text(title,
-                    style: const TextStyle(
-                        fontSize: 24, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 8.0),
-                Row(
-                  children: [
-                    const Icon(Icons.calendar_month_rounded, size: 16),
-                    const SizedBox(width: 4),
-                    Text(date,
-                        style: const TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w400)),
-                  ],
-                ),
-                const SizedBox(height: 10.0),
-                const Divider(),
-                const SizedBox(height: 8.0),
-                MarkdownBlock(
-                  data: description,
-                ),
-              ],
-            ),
-          ),
-        ));
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(),
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          children: [
+            const SizedBox(height: 10.0),
+            Padding(
+                padding: const EdgeInsets.only(
+                    left: 10, bottom: 0, right: 10, top: 10),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25),
+                      topRight: Radius.circular(25),
+                      bottomLeft: Radius.circular(3),
+                      bottomRight: Radius.circular(3),
+                    ),
+                    child: Material(
+                      color: Theme.of(context).colorScheme.surfaceVariant,
+                      child: InkWell(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, bottom: 20, right: 20, top: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(title,
+                                  style: const TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold)),
+                              const SizedBox(height: 8.0),
+                              Row(
+                                children: [
+                                  const Icon(Icons.calendar_month_rounded,
+                                      size: 14),
+                                  const SizedBox(width: 4),
+                                  Text("Updated on $date",
+                                      style: const TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w100)),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ))),
+            Padding(
+                padding: const EdgeInsets.only(
+                    left: 10, bottom: 10, right: 10, top: 3),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(3),
+                      topRight: Radius.circular(3),
+                      bottomLeft: Radius.circular(25),
+                      bottomRight: Radius.circular(25),
+                    ),
+                    child: Material(
+                      color: Theme.of(context).colorScheme.surfaceVariant,
+                      child: InkWell(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, bottom: 20, right: 20, top: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              MarkdownBlock(
+                                data: description,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ))),
+            const SizedBox(height: 3),
+          ],
+        ),
+      ),
+    ));
   }
 }

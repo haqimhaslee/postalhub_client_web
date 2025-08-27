@@ -188,10 +188,8 @@ class DealViewer extends StatelessWidget {
                                 topLeft: Radius.circular(3),
                                 topRight: Radius.circular(3)),
                             child: Material(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .surfaceVariant
-                                  .withOpacity(0.4),
+                              color:
+                                  Theme.of(context).colorScheme.surfaceVariant,
                               child: InkWell(
                                 child: Padding(
                                   padding: const EdgeInsets.only(

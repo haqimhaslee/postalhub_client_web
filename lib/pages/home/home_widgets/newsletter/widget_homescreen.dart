@@ -62,6 +62,18 @@ class _AnnouncementWidgetState extends State<AnnouncementWidget> {
                 color: Theme.of(context).colorScheme.primary,
               ),
               const Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(right: 16),
+                child: TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'VIEW MORE',
+                    style: TextStyle(
+                      fontSize: 11,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -83,7 +95,7 @@ class _AnnouncementWidgetState extends State<AnnouncementWidget> {
           return Column(
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(10, 15, 10, 10),
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(25)),
                   child: Material(

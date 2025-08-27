@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:postalhub_tracker/pages/reward_system/deal/deal_page/case_deal_page.dart';
-import 'package:postalhub_tracker/pages/reward_system/deal/deal_widgets/no_reward_handler.dart';
+import 'package:postalhub_tracker/pages/reward_system/deal/deal_widgets/all_deal.dart';
+import 'package:postalhub_tracker/pages/reward_system/deal/deal_widgets/components/no_reward_handler.dart';
 import 'package:postalhub_tracker/pages/reward_system/deal/viewer.dart';
 import 'package:postalhub_tracker/src/ui_components/shimmer_loading_animation.dart';
 
@@ -34,7 +35,7 @@ class _FoodAndBeverageState extends State<FoodAndBeverage> {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('rewardLibrary')
           .where('rewardTag', isEqualTo: 'food')
-          .limit(5)
+          .limit(8)
           .get();
 
       if (mounted) {
@@ -120,7 +121,7 @@ class _FoodAndBeverageState extends State<FoodAndBeverage> {
           ConstrainedBox(
             constraints: const BoxConstraints(maxHeight: 260),
             child: CarouselView(
-              itemSnapping: true,
+              itemSnapping: false,
               itemExtent: 200,
               onTap: (index) {
                 final doc = documents[index];
@@ -146,91 +147,6 @@ class _FoodAndBeverageState extends State<FoodAndBeverage> {
               }).toList(),
             ),
           )
-      ],
-    );
-  }
-}
-
-class RewardCard extends StatelessWidget {
-  const RewardCard({super.key, required this.doc});
-
-  final Map<String, dynamic> doc;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.bottomStart,
-      children: <Widget>[
-        /// BACKGROUND IMAGE
-        ClipRect(
-          child: OverflowBox(
-            maxWidth: 200, // same fixed card width
-            minWidth: 200,
-            minHeight: 260,
-            maxHeight: 260,
-            child: Image.network(
-              doc['rewardImage'],
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-
-        ///TINT
-        Container(
-          width: 200,
-          height: 260,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.transparent,
-                Colors.black.withOpacity(0.7),
-              ],
-            ),
-          ),
-        ),
-
-        ///CONTENT
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                doc['rewardTitle'] ?? "",
-                overflow: TextOverflow.clip,
-                maxLines: 2,
-                softWrap: false,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15),
-              ),
-              Text(
-                doc['rewardProvider'] ?? "",
-                maxLines: 1,
-                overflow: TextOverflow.clip,
-                softWrap: false,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w100,
-                    fontSize: 14.5),
-              ),
-              SizedBox(height: 5),
-              Text(
-                "${doc['rewardPointValue'] ?? 0} points",
-                overflow: TextOverflow.clip,
-                softWrap: false,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14),
-              ),
-            ],
-          ),
-        ),
       ],
     );
   }
