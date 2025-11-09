@@ -5,6 +5,7 @@ import 'package:postalhub_tracker/pages/inbox/inbox.dart';
 import 'package:postalhub_tracker/pages/more/more_page.dart';
 import 'package:postalhub_tracker/pages/parcel_library/parcel_library.dart';
 import 'package:postalhub_tracker/pages/reward_system/reward.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavigatorServices extends StatefulWidget {
   const NavigatorServices({super.key});
@@ -33,6 +34,41 @@ class _NavigatorServicesState extends State<NavigatorServices>
       vsync: this,
       duration: const Duration(seconds: 3),
     )..repeat();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _showMaterialBanner());
+  }
+
+  void _showMaterialBanner() {
+    ScaffoldMessenger.of(context).showMaterialBanner(
+      MaterialBanner(
+        padding: const EdgeInsets.all(10),
+        content: Text(
+          'To access the latest features, please download our mobile app from the Play Store. The web version will continue to receive critical updates and fixes only.',
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.onTertiaryContainer),
+        ),
+        leading: Icon(
+          Icons.info,
+          color: Theme.of(context).colorScheme.onTertiaryContainer,
+        ),
+        backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+        actions: <Widget>[
+          FilledButton(
+            onPressed: _launchURL,
+            child: const Text('Download'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _launchURL() async {
+    const url =
+        'https://play.google.com/store/apps/details?id=com.postalhub.tracker';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
@@ -123,7 +159,7 @@ class _NavigatorServicesState extends State<NavigatorServices>
                       ),
                     ],
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     width: 0.5,
                   )
                 ],
@@ -189,7 +225,7 @@ class _NavigatorServicesState extends State<NavigatorServices>
                       ),
                     ],
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     width: 0.5,
                   )
                 ],

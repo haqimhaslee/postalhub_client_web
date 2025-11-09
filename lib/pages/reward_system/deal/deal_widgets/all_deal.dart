@@ -32,7 +32,7 @@ class _AllDealRewardsState extends State<AllDealRewards> {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('rewardLibrary')
-          .limit(8)
+          .limit(5)
           .get();
 
       if (mounted) {

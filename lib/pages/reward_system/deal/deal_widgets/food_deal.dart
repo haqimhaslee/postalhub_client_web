@@ -35,7 +35,7 @@ class _FoodAndBeverageState extends State<FoodAndBeverage> {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('rewardLibrary')
           .where('rewardTag', isEqualTo: 'food')
-          .limit(8)
+          .limit(5)
           .get();
 
       if (mounted) {

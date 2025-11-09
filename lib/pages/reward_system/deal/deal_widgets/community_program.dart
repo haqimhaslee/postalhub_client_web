@@ -34,7 +34,7 @@ class _CommunityProgramState extends State<CommunityProgram> {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('rewardLibrary')
           .where('rewardTag', isEqualTo: _case)
-          .limit(8)
+          .limit(5)
           .get();
 
       if (mounted) {
