@@ -34,30 +34,50 @@ class _NavigatorServicesState extends State<NavigatorServices>
       vsync: this,
       duration: const Duration(seconds: 3),
     )..repeat();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _showMaterialBanner());
+    WidgetsBinding.instance.addPostFrameCallback((_) => _showDialogMessage());
   }
 
-  void _showMaterialBanner() {
-    ScaffoldMessenger.of(context).showMaterialBanner(
-      MaterialBanner(
-        padding: const EdgeInsets.all(10),
-        content: Text(
-          'To access the latest features, please download our mobile app from the Play Store. The web version will continue to receive critical updates and fixes only.',
-          style: TextStyle(
-              color: Theme.of(context).colorScheme.onTertiaryContainer),
-        ),
-        leading: Icon(
-          Icons.info,
-          color: Theme.of(context).colorScheme.onTertiaryContainer,
-        ),
-        backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
-        actions: <Widget>[
-          FilledButton(
-            onPressed: _launchURL,
-            child: const Text('Download'),
+  void _showDialogMessage() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          icon: const Icon(Icons.info),
+          title: const Text('Information'),
+          content: const Text(
+            'To access the latest features, please download our mobile app from the Play Store. The web version will continue to receive critical updates and fixes only.',
           ),
-        ],
-      ),
+          actions: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                FilledButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    _launchURL();
+                  },
+                  child: const Text('Download for Android'),
+                ),
+                const SizedBox(height: 10),
+                FilledButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    _launchURL();
+                  },
+                  child: const Text('Download for iOS'),
+                ),
+                const SizedBox(height: 10),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Dismiss'),
+                ),
+              ],
+            )
+          ],
+        );
+      },
     );
   }
 

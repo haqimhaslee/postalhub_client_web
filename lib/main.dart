@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
           valueListenable: themeManager,
           builder: (context, themeMode, _) {
             return MaterialApp(
-              title: "Postal Hub",
+              title: "Campus Hub | Mini App",
               theme: ThemeData(
                 colorScheme: lightScheme,
                 useMaterial3: true,
