@@ -5,6 +5,7 @@ import 'package:postalhub_tracker/pages/more/about/about_main.dart';
 import 'package:postalhub_tracker/pages/more/settings/appearance/appearance_main.dart';
 import 'package:postalhub_tracker/pages/more/settings/language/language_main.dart';
 import 'package:postalhub_tracker/pages/services/customer_services/customer_services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MorePage extends StatefulWidget {
   const MorePage({super.key});
@@ -15,11 +16,21 @@ class MorePage extends StatefulWidget {
 bool switchValue = false;
 
 class _MorePageState extends State<MorePage> {
+  Future<void> _launchURL() async {
+    const url =
+        'https://play.google.com/store/apps/details?id=com.postalhub.tracker';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Profile & more"),
+          title: Text("More"),
         ),
         body: Align(
             alignment: Alignment.topCenter,
@@ -33,13 +44,150 @@ class _MorePageState extends State<MorePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 20),
+                          padding: const EdgeInsets.all(15),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .surfaceContainerLow,
+                                  borderRadius: BorderRadius.circular(30),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color:
+                                          Colors.black.withValues(alpha: 0.15),
+                                      blurRadius: 10,
+                                      offset: const Offset(2, 2),
+                                    ),
+                                  ],
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Stack(
+                                    children: [
+                                      Positioned(
+                                        top: -60,
+                                        right: -30,
+                                        child: Container(
+                                          width: 200,
+                                          height: 200,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.surfaceContainerHigh,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(24.0),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Stack(
+                                                        clipBehavior: Clip.none,
+                                                        children: [
+                                                          CircleAvatar(
+                                                            radius: 35,
+                                                            child: const Icon(
+                                                              Icons.person,
+                                                              size: 40,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      const SizedBox(width: 16),
+                                                      Expanded(
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              'Guest',
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 20,
+                                                                color: Theme.of(
+                                                                  context,
+                                                                )
+                                                                    .colorScheme
+                                                                    .onSurface,
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                                height: 2),
+                                                            Text(
+                                                              'Download app to access more features',
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontSize: 15,
+                                                                color: const Color(
+                                                                    0xFF888888),
+                                                              ),
+                                                              maxLines: 2,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                            ),
+                                                            const SizedBox(
+                                                                height: 10),
+                                                            FilledButton(
+                                                              onPressed: () {
+                                                                _launchURL();
+                                                              },
+                                                              child: Text(
+                                                                  "Download Now"),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            const SizedBox(width: 16),
+                                            IconButton.filled(
+                                              onPressed: () {},
+                                              icon: Icon(
+                                                  Icons.qr_code_2_rounded,
+                                                  size: 30),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         Padding(
                             padding: const EdgeInsets.only(
-                                left: 15, bottom: 2, right: 15),
+                                left: 15, bottom: 3, right: 15),
                             child: ClipRRect(
                                 borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(5),
+                                  bottomRight: Radius.circular(5),
                                   topLeft: Radius.circular(25),
                                   topRight: Radius.circular(25),
                                 ),
@@ -91,9 +239,11 @@ class _MorePageState extends State<MorePage> {
                       children: [
                         Padding(
                             padding: const EdgeInsets.only(
-                                left: 15, bottom: 2, right: 15),
+                                left: 15, bottom: 3, right: 15),
                             child: ClipRRect(
                               borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(5),
+                                topRight: Radius.circular(5),
                                 bottomLeft: Radius.circular(25),
                                 bottomRight: Radius.circular(25),
                               ),
@@ -143,9 +293,11 @@ class _MorePageState extends State<MorePage> {
                   ),
                   Padding(
                       padding:
-                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                          const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                       child: ClipRRect(
                         borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(5),
+                          bottomRight: Radius.circular(5),
                           topLeft: Radius.circular(25),
                           topRight: Radius.circular(25),
                         ),
@@ -177,9 +329,11 @@ class _MorePageState extends State<MorePage> {
                       )),
                   Padding(
                       padding:
-                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                          const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                       child: ClipRRect(
                         borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5),
+                          topRight: Radius.circular(5),
                           bottomLeft: Radius.circular(25),
                           bottomRight: Radius.circular(25),
                         ),
@@ -214,9 +368,11 @@ class _MorePageState extends State<MorePage> {
                   ),
                   Padding(
                       padding:
-                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                          const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                       child: ClipRRect(
                           borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(5),
+                            bottomRight: Radius.circular(5),
                             topLeft: Radius.circular(25),
                             topRight: Radius.circular(25),
                           ),
@@ -247,9 +403,11 @@ class _MorePageState extends State<MorePage> {
                           ))),
                   Padding(
                       padding:
-                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                          const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                       child: ClipRRect(
                           borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(5),
+                            topRight: Radius.circular(5),
                             bottomLeft: Radius.circular(25),
                             bottomRight: Radius.circular(25),
                           ),

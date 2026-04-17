@@ -30,9 +30,11 @@ class _LanguageMainState extends State<LanguageMain> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                      const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(5),
+                      bottomRight: Radius.circular(5),
                       topLeft: Radius.circular(25),
                       topRight: Radius.circular(25),
                     ),
@@ -58,11 +60,10 @@ class _LanguageMainState extends State<LanguageMain> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                      const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(0),
-                      topRight: Radius.circular(0),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5),
                     ),
                     child: Material(
                         color: Theme.of(context).colorScheme.surfaceVariant,
@@ -82,11 +83,10 @@ class _LanguageMainState extends State<LanguageMain> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                      const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(0),
-                      topRight: Radius.circular(0),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5),
                     ),
                     child: Material(
                         color: Theme.of(context).colorScheme.surfaceVariant,
@@ -96,9 +96,9 @@ class _LanguageMainState extends State<LanguageMain> {
                               title: Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                                child: const Text('中文 (简体)'),
+                                child: const Text('中文'),
                               ),
-                              value: '中文(简体)',
+                              value: '中文',
                               groupValue: selectedOption,
                               onChanged: null),
                         )),
@@ -106,33 +106,11 @@ class _LanguageMainState extends State<LanguageMain> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                      const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(0),
-                      topRight: Radius.circular(0),
-                    ),
-                    child: Material(
-                        color: Theme.of(context).colorScheme.surfaceVariant,
-                        child: Padding(
-                          padding: const EdgeInsets.all(0),
-                          child: RadioListTile<String>(
-                              title: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                                child: const Text('中文 (繁體)'),
-                              ),
-                              value: '中文(繁體)',
-                              groupValue: selectedOption,
-                              onChanged: null),
-                        )),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 15, bottom: 2, right: 15),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(5),
+                      topRight: Radius.circular(5),
                       bottomLeft: Radius.circular(25),
                       bottomRight: Radius.circular(25),
                     ),

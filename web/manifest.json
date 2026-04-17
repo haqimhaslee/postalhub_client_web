@@ -1,11 +1,11 @@
 {
-    "name": "Postal Hub",
-    "short_name": "Postal Hub",
+    "name": "Campus Hub | Parcel Tracker Mini App",
+    "short_name": "Campus Hub | Mini App",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Campus Postal Hub app/system",
+    "description": "Campus Hub | Parcel Tracker Mini App system",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

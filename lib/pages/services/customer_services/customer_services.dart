@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:postalhub_tracker/pages/services/customer_services/faqs/main_faqs_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CustomerServices extends StatelessWidget {
   const CustomerServices({super.key});
@@ -23,9 +24,11 @@ class CustomerServices extends StatelessWidget {
                   ),
                   Padding(
                       padding:
-                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                          const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                       child: ClipRRect(
                         borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(5),
+                          bottomRight: Radius.circular(5),
                           topLeft: Radius.circular(25),
                           topRight: Radius.circular(25),
                         ),
@@ -76,11 +79,10 @@ class CustomerServices extends StatelessWidget {
                       )),
                   Padding(
                       padding:
-                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                          const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(0),
-                          topRight: Radius.circular(0),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(5),
                         ),
                         child: Material(
                           color: Theme.of(context).colorScheme.surfaceVariant,
@@ -110,8 +112,7 @@ class CustomerServices extends StatelessWidget {
                                 title: Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                  child: const Text(
-                                      'Ticket Support [COMING SOON]'),
+                                  child: const Text('Ticket Support [PLANNED]'),
                                 ),
                                 subtitle: Padding(
                                     padding:
@@ -142,9 +143,11 @@ class CustomerServices extends StatelessWidget {
                       )),
                   Padding(
                       padding:
-                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                          const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                       child: ClipRRect(
                         borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5),
+                          topRight: Radius.circular(5),
                           bottomLeft: Radius.circular(25),
                           bottomRight: Radius.circular(25),
                         ),
@@ -176,8 +179,7 @@ class CustomerServices extends StatelessWidget {
                                 title: Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                  child:
-                                      const Text('Parcel Mate [COMING SOON]'),
+                                  child: const Text('Parcel Mate [PLANNED]'),
                                 ),
                                 subtitle: Padding(
                                     padding:
@@ -211,16 +213,21 @@ class CustomerServices extends StatelessWidget {
                   ),
                   Padding(
                       padding:
-                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                          const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                       child: ClipRRect(
                         borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(5),
+                          bottomRight: Radius.circular(5),
                           topLeft: Radius.circular(25),
                           topRight: Radius.circular(25),
                         ),
                         child: Material(
                           color: Theme.of(context).colorScheme.surfaceVariant,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              launchUrl(Uri.parse(
+                                  'mailto:postalhub.resources@gmail.com'));
+                            },
                             child: Padding(
                               padding: const EdgeInsets.all(0),
                               child: ListTile(
@@ -228,7 +235,7 @@ class CustomerServices extends StatelessWidget {
                                 title: Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                  child: const Text('Email'),
+                                  child: const Text('Email (Operating Issue)'),
                                 ),
                                 subtitle: Padding(
                                     padding:
@@ -243,16 +250,17 @@ class CustomerServices extends StatelessWidget {
                       )),
                   Padding(
                       padding:
-                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                          const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(0),
-                          topRight: Radius.circular(0),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(5),
                         ),
                         child: Material(
                           color: Theme.of(context).colorScheme.surfaceVariant,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              launchUrl(Uri.parse('tel:+601156765004'));
+                            },
                             child: Padding(
                               padding: const EdgeInsets.all(0),
                               child: ListTile(
@@ -260,12 +268,14 @@ class CustomerServices extends StatelessWidget {
                                 title: Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                  child: const Text('Hotline Service'),
+                                  child:
+                                      const Text('Hotline (Operating Issue)'),
                                 ),
                                 subtitle: Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                    child: const Text('Not available yet')),
+                                    child: const Text(
+                                        '+601156765004 (Call/WhatsApp)')),
                                 trailing: const Icon(Icons.call_made_rounded),
                               ),
                             ),
@@ -274,60 +284,33 @@ class CustomerServices extends StatelessWidget {
                       )),
                   Padding(
                       padding:
-                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(0),
-                          topRight: Radius.circular(0),
-                        ),
-                        child: Material(
-                          color: Theme.of(context).colorScheme.surfaceVariant,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.all(0),
-                              child: ListTile(
-                                leading: const Icon(Icons.tiktok_outlined),
-                                title: Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                  child: const Text('TikTok'),
-                                ),
-                                subtitle: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                    child: const Text('Not available yet')),
-                                trailing: const Icon(Icons.call_made_rounded),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )),
-                  Padding(
-                      padding:
-                          const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                          const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                       child: ClipRRect(
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(25),
                           bottomRight: Radius.circular(25),
+                          topLeft: Radius.circular(5),
+                          topRight: Radius.circular(5),
                         ),
                         child: Material(
                           color: Theme.of(context).colorScheme.surfaceVariant,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              launchUrl(Uri.parse('mailto:support@qimlab.my'));
+                            },
                             child: Padding(
                               padding: const EdgeInsets.all(0),
                               child: ListTile(
-                                leading: const Icon(Icons.facebook_outlined),
+                                leading: const Icon(Icons.email_outlined),
                                 title: Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                  child: const Text('Facebook'),
+                                  child: const Text('Email (Technical Issue)'),
                                 ),
                                 subtitle: Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                    child: const Text('Not available yet')),
+                                    child: const Text('support@qimlab.my')),
                                 trailing: const Icon(Icons.call_made_rounded),
                               ),
                             ),

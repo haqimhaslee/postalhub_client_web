@@ -3,8 +3,6 @@ import 'package:animations/animations.dart';
 import 'package:postalhub_tracker/pages/home/home.dart';
 import 'package:postalhub_tracker/pages/inbox/inbox.dart';
 import 'package:postalhub_tracker/pages/more/more_page.dart';
-import 'package:postalhub_tracker/pages/parcel_library/parcel_library.dart';
-import 'package:postalhub_tracker/pages/reward_system/reward.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NavigatorServices extends StatefulWidget {
@@ -22,8 +20,6 @@ class _NavigatorServicesState extends State<NavigatorServices>
   var _selectedIndex = 0;
   final List<Widget> _windgetOption = <Widget>[
     const HomePage(),
-    const ParcelLibraryPage(),
-    const Reward(),
     const Inbox(),
     const MorePage(),
   ];
@@ -113,24 +109,14 @@ class _NavigatorServicesState extends State<NavigatorServices>
                     label: 'Home',
                   ),
                   NavigationDestination(
-                    icon: Icon(Icons.inventory_2_outlined),
-                    selectedIcon: Icon(Icons.inventory_2_rounded),
-                    label: 'My Parcel',
-                  ),
-                  NavigationDestination(
-                    icon: Icon(Icons.redeem_rounded),
-                    selectedIcon: Icon(Icons.redeem_rounded),
-                    label: 'Rewards',
-                  ),
-                  NavigationDestination(
                     icon: Icon(Icons.inbox_outlined),
                     selectedIcon: Icon(Icons.inbox_rounded),
                     label: 'Inbox',
                   ),
                   NavigationDestination(
-                    icon: Icon(Icons.person_outlined),
-                    selectedIcon: Icon(Icons.person_rounded),
-                    label: 'Profile',
+                    icon: Icon(Icons.more_horiz_outlined),
+                    selectedIcon: Icon(Icons.more_horiz_rounded),
+                    label: 'More',
                   ),
                 ],
               )
@@ -158,24 +144,14 @@ class _NavigatorServicesState extends State<NavigatorServices>
                         label: Text('Home'),
                       ),
                       NavigationRailDestination(
-                        icon: Icon(Icons.inventory_2_outlined),
-                        selectedIcon: Icon(Icons.inventory_2_rounded),
-                        label: Text('My Parcel'),
-                      ),
-                      NavigationRailDestination(
-                        icon: Icon(Icons.redeem_rounded),
-                        selectedIcon: Icon(Icons.redeem_rounded),
-                        label: Text('Rewards'),
-                      ),
-                      NavigationRailDestination(
                         icon: Icon(Icons.inbox_outlined),
                         selectedIcon: Icon(Icons.inbox_rounded),
                         label: Text('Inbox'),
                       ),
                       NavigationRailDestination(
-                        icon: Icon(Icons.person_outlined),
-                        selectedIcon: Icon(Icons.person_rounded),
-                        label: Text('Profile'),
+                        icon: Icon(Icons.more_horiz_outlined),
+                        selectedIcon: Icon(Icons.more_horiz_outlined),
+                        label: Text('More'),
                       ),
                     ],
                   ),
@@ -202,24 +178,14 @@ class _NavigatorServicesState extends State<NavigatorServices>
                         selectedIcon: Icon(Icons.home_rounded),
                       ),
                       NavigationDrawerDestination(
-                        label: Text('My Parcel'),
-                        icon: Icon(Icons.inventory_2_outlined),
-                        selectedIcon: Icon(Icons.inventory_2_rounded),
-                      ),
-                      NavigationDrawerDestination(
-                        label: Text('Rewards'),
-                        icon: Icon(Icons.redeem_rounded),
-                        selectedIcon: Icon(Icons.redeem_rounded),
-                      ),
-                      NavigationDrawerDestination(
                         label: Text('Inbox'),
                         icon: Icon(Icons.inbox_outlined),
                         selectedIcon: Icon(Icons.inbox_rounded),
                       ),
                       NavigationDrawerDestination(
-                        icon: Icon(Icons.person_outlined),
-                        selectedIcon: Icon(Icons.person_rounded),
-                        label: Text('Profile'),
+                        icon: Icon(Icons.more_horiz_outlined),
+                        selectedIcon: Icon(Icons.more_horiz_outlined),
+                        label: Text('More'),
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(28, 10, 28, 10),

@@ -11,7 +11,7 @@ import 'package:postalhub_tracker/src/postalhub_ui.dart';
 
 //EXTERNAL PACKAGE
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_app_check/firebase_app_check.dart';
+//import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 
@@ -23,12 +23,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseAppCheck.instance.activate(
-    webProvider:
-        ReCaptchaV3Provider('6LdVFMsrAAAAAEgO_ua32jn2E2qSjQta1En3Ar6c'),
-    androidProvider: AndroidProvider.playIntegrity,
-    appleProvider: AppleProvider.deviceCheck,
-  );
+  // await FirebaseAppCheck.instance.activate(
+  //  webProvider:
+  //       ReCaptchaV3Provider('6LdVFMsrAAAAAEgO_ua32jn2E2qSjQta1En3Ar6c'),
+  //   androidProvider: AndroidProvider.playIntegrity,
+  // appleProvider: AppleProvider.deviceCheck,
+  //);
 
   FlutterError.onError = (errorDetails) {
     FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
           valueListenable: themeManager,
           builder: (context, themeMode, _) {
             return MaterialApp(
-              title: "Campus Hub | Mini App",
+              title: "Campus Hub | Parcel Tracker Mini App",
               theme: ThemeData(
                 colorScheme: lightScheme,
                 useMaterial3: true,

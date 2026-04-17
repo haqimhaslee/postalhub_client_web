@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 import 'package:postalhub_tracker/pages/more/about/about_postalhub.dart';
-import 'package:postalhub_tracker/pages/more/information/updates_info_at.dart';
 
 class AboutMain extends StatefulWidget {
   const AboutMain({super.key});
@@ -57,11 +56,13 @@ class _AboutMainState extends State<AboutMain> {
                 ),
                 Padding(
                     padding:
-                        const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                        const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                     child: ClipRRect(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(25),
                         topRight: Radius.circular(25),
+                        bottomLeft: Radius.circular(5),
+                        bottomRight: Radius.circular(5),
                       ),
                       child: Material(
                         color: Theme.of(context).colorScheme.surfaceVariant,
@@ -86,11 +87,10 @@ class _AboutMainState extends State<AboutMain> {
                     )),
                 Padding(
                     padding:
-                        const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                        const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(0),
-                        topRight: Radius.circular(0),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
                       ),
                       child: Material(
                         color: Theme.of(context).colorScheme.surfaceVariant,
@@ -110,11 +110,13 @@ class _AboutMainState extends State<AboutMain> {
                     )),
                 Padding(
                     padding:
-                        const EdgeInsets.only(left: 15, bottom: 2, right: 15),
+                        const EdgeInsets.only(left: 15, bottom: 3, right: 15),
                     child: ClipRRect(
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(0),
-                        topRight: Radius.circular(0),
+                        topLeft: Radius.circular(5),
+                        topRight: Radius.circular(5),
+                        bottomLeft: Radius.circular(25),
+                        bottomRight: Radius.circular(25),
                       ),
                       child: Material(
                         color: Theme.of(context).colorScheme.surfaceVariant,
@@ -128,36 +130,6 @@ class _AboutMainState extends State<AboutMain> {
                                 title: const Text('Licences'),
                                 subtitle:
                                     const Text('Licenses used in Postal Hub'),
-                                trailing:
-                                    const Icon(Icons.chevron_right_rounded),
-                              ),
-                            )),
-                      ),
-                    )),
-                Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, bottom: 2, right: 15),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(25),
-                        bottomRight: Radius.circular(25),
-                      ),
-                      child: Material(
-                        color: Theme.of(context).colorScheme.surfaceVariant,
-                        child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const UpdatesInfoAt(),
-                                ),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(6),
-                              child: ListTile(
-                                title: const Text('Version'),
-                                subtitle: const Text('Version of Postal Hub'),
                                 trailing:
                                     const Icon(Icons.chevron_right_rounded),
                               ),

@@ -51,9 +51,11 @@ class _AppearanceMainState extends State<AppearanceMain> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: 15, bottom: 2, right: 15),
+                            left: 15, bottom: 3, right: 15),
                         child: ClipRRect(
                           borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(5),
+                            bottomRight: Radius.circular(5),
                             topLeft: Radius.circular(25),
                             topRight: Radius.circular(25),
                           ),
@@ -84,11 +86,10 @@ class _AppearanceMainState extends State<AppearanceMain> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: 15, bottom: 2, right: 15),
+                            left: 15, bottom: 3, right: 15),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(0),
-                            topRight: Radius.circular(0),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5),
                           ),
                           child: Material(
                               color:
@@ -117,9 +118,11 @@ class _AppearanceMainState extends State<AppearanceMain> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: 15, bottom: 2, right: 15),
+                            left: 15, bottom: 3, right: 15),
                         child: ClipRRect(
                             borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(5),
+                              topRight: Radius.circular(5),
                               bottomLeft: Radius.circular(25),
                               bottomRight: Radius.circular(25),
                             ),

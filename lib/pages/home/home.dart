@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
                   child: SizedBox(width: 600, child: Greetings()),
                 )),
             Padding(
-              padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+              padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
               child: SizedBox(
                 width: 600,
                 child: CarouselAds(),
